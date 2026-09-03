@@ -1,0 +1,21 @@
+# --- secrets: never tracked ---
+.env
+
+# --- python ---
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# --- OS ---
+.DS_Store
+
+# --- scratch ---
+*.bak
+*.tmp
+
+# --- results tree: derived/ephemeral entries that never ship ---
+results/dry_runs/
+results/openrouter_cache/
+results/analysis/viewer/
+

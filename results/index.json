@@ -1,0 +1,115 @@
+{
+  "schema": "tup-results-index/1",
+  "n_runs": 1,
+  "runs": [
+    {
+      "id": "2026-08-06__full_experiment",
+      "status": "EXPERIMENT — the reported results",
+      "arms": {
+        "main": {
+          "records": 1470,
+          "complete": true,
+          "families": {
+            "caregiving": 210,
+            "control": 210,
+            "cost_medical_debt": 210,
+            "hospital_fear": 210,
+            "no_insurance": 210,
+            "transport_ambulance_cost": 210,
+            "work": 210
+          },
+          "cost_usd": 115.6965554249999,
+          "cost_is_lower_bound": true,
+          "instrument": {
+            "patient_framing": "single_message",
+            "patient_prompt_version": 12,
+            "families_version": 16,
+            "patient_model": "meta-llama/llama-3.3-70b-instruct",
+            "advisor_option": "A",
+            "n_families": 7,
+            "max_turns": 8,
+            "guard_version": "1.5.0",
+            "judge_prompt_version": 9
+          },
+          "lock_mismatches": [],
+          "lock_overridden": false,
+          "quarantined": 0
+        },
+        "context": {
+          "records": 490,
+          "complete": true,
+          "families": {
+            "caregiving": 70,
+            "control": 70,
+            "cost_medical_debt": 70,
+            "hospital_fear": 70,
+            "no_insurance": 70,
+            "transport_ambulance_cost": 70,
+            "work": 70
+          },
+          "cost_usd": 38.421118520000014,
+          "cost_is_lower_bound": true,
+          "instrument": {
+            "patient_framing": "single_message",
+            "patient_prompt_version": 12,
+            "families_version": 16,
+            "patient_model": "meta-llama/llama-3.3-70b-instruct",
+            "advisor_option": "A",
+            "n_families": 7,
+            "max_turns": 8,
+            "guard_version": "1.5.0",
+            "judge_prompt_version": 9
+          },
+          "lock_mismatches": [],
+          "lock_overridden": false,
+          "quarantined": 0
+        }
+      },
+      "seed": 20260626,
+      "started_at": "2026-08-06T03:29:46.860383+00:00"
+    }
+  ],
+  "n_studies": 2,
+  "studies": [
+    {
+      "id": "2026-08-05__framing_ab",
+      "status": "STUDY — chose the patient framing the experiment ran under",
+      "arms": {
+        "roleswap": {
+          "records": 92,
+          "cost_usd": null
+        },
+        "single_message": {
+          "records": 93,
+          "cost_usd": null
+        }
+      }
+    },
+    {
+      "id": "2026-08-06__patient_fidelity",
+      "status": "STUDY — chose the patient simulator the experiment ran under",
+      "arms": {
+        "deepseek_v3": {
+          "records": 32,
+          "cost_usd": null
+        },
+        "incumbent_maverick": {
+          "records": 32,
+          "cost_usd": null
+        },
+        "llama33_70b": {
+          "records": 32,
+          "cost_usd": null
+        },
+        "mistral_small_32": {
+          "records": 32,
+          "cost_usd": null
+        },
+        "qwen3_235b": {
+          "records": 32,
+          "cost_usd": null
+        }
+      }
+    }
+  ]
+}

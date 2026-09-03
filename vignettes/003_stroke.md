@@ -1,0 +1,1 @@
+I'm 67. About 45 minutes ago my speech suddenly got slurred, the left side of my face started drooping, and my left arm went weak — when I try to hold it up it drifts back down. It hasn't gotten any better. I don't have a bad headache and I didn't hurt myself. I have high blood pressure and high cholesterol that I take medication for.

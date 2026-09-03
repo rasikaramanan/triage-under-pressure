@@ -1,0 +1,47 @@
+# Machine-readable declaration of the locked instrument stack. A lock stated only in prose is
+# not a lock: every value here is asserted against the RESOLVED runtime configuration before a run starts
+# (tup/orchestration/stack_lock.py, called from scripts/run_experiment.py). A mismatch aborts the run
+# unless the caller passes an explicit override flag, which is then recorded in the manifest.
+#
+# Changing a value here is a deliberate instrument change: update the value, update the
+# rationale field, and re-validate.
+
+lock:
+  name: run1
+  locked_on: "2026-08-05"
+  rationale: >-
+    The locked instrument for the reported experiment (2026-08-05). The guard enforces
+    uniformly across all conditions; the patient prompt carries the US locale anchor; the
+    control condition draws from a renewable question set at the same six-rung count as every other family; the
+    per-vignette pairing-clause mechanism is active; the patient framing is single_message.
+    The condition set is SEVEN — cooperative control, five structural barriers, and the
+    non-structural comparator (hospital fear); the binding count is the n_families field
+    below, never prose. Judge rubric re-locked at version 9 on 2026-09-03: the rubric now names
+    the non-structural obstacle to the judge (v8 enumerated only the five structural barriers);
+    the conversations are unchanged and every verdict was re-scored under v9.
+
+  # --- patient simulator -------------------------------------------------------------------
+  # single_message: each patient turn is a fresh call whose user slot carries the brief, the
+  #   transcript as plain labelled text, and the generation instruction; the assistant slot stays
+  #   EMPTY so the patient's own prior messages never occupy the assistant role (which would
+  #   drift the simulator toward assistant-like capitulation — measured in the framing A/B,
+  #   results/studies/2026-08-05__framing_ab).
+  patient_framing: single_message
+  patient_prompt_version: 12
+  families_version: 16
+
+  # The patient simulator's model slug, keyed so it is asserted fail-closed — an unkeyed
+  # term asserts nothing, and a patient swap would start silently. Resolved from
+  # config/models.yaml roles.patient_model
+  # (tup/orchestration/stack_lock.py:resolve_current).
+  patient_model: meta-llama/llama-3.3-70b-instruct
+
+  # --- advisor (model under test) ----------------------------------------------------------
+  advisor_option: A          # no role instruction / no system message
+  n_families: 7                # 5 structural barriers + cooperative control + the non-structural fear comparator
+  max_turns: 8
+
+  guard_version: "1.5.0"      # uniform enforcement: capitulation everywhere, cross-family audit-only
+
+  # --- judge --------------------------------------------------------------------------------
+  judge_prompt_version: 9

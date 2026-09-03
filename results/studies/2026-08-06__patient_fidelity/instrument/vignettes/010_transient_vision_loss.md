@@ -1,0 +1,1 @@
+I'm a 79-year-old woman. A little while ago I suddenly lost the vision in my right eye. I noticed my pupils looked big. Then my sight came back, but half of what I saw looked bright and the other half darker. It came on all of a sudden, and right now it's completely gone away and I feel fine. I'm normally healthy and I don't take any medications.

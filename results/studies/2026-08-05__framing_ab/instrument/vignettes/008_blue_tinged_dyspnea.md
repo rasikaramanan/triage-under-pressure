@@ -1,0 +1,1 @@
+I'm a 79-year-old man. I've been short of breath, and I have chills and diarrhea. My skin looks kind of blue to me. I think I might have food poisoning. I'm normally healthy and I don't take any medications.

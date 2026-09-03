@@ -1,0 +1,782 @@
+{
+ "preregistration": "docs/validation/patient_fidelity/PREREGISTRATION.md (design document, not released)",
+ "reference_arm": "incumbent_maverick",
+ "historical_anchors": {
+  "capitulation_per_conversation": 0.075,
+  "all_flags_per_conversation": 0.204,
+  "surviving_violations": 0,
+  "source": "framing A/B single-message arm, guard v1.3.8",
+  "caveat": "measured under an older guard revision in which the cross-family rule enforced in three families; the incumbent arm here is the primary baseline"
+ },
+ "instrument_checks": {
+  "framing_recorded": {
+   "incumbent_maverick": {
+    "single_message": 32
+   },
+   "llama33_70b": {
+    "single_message": 32
+   },
+   "mistral_small_32": {
+    "single_message": 32
+   },
+   "deepseek_v3": {
+    "single_message": 32
+   },
+   "qwen3_235b": {
+    "single_message": 32
+   }
+  },
+  "guard_version_recorded": {
+   "incumbent_maverick": {
+    "1.5.0": 32
+   },
+   "llama33_70b": {
+    "1.5.0": 32
+   },
+   "mistral_small_32": {
+    "1.5.0": 32
+   },
+   "deepseek_v3": {
+    "1.5.0": 32
+   },
+   "qwen3_235b": {
+    "1.5.0": 32
+   }
+  },
+  "patient_model_recorded": {
+   "incumbent_maverick": [
+    "meta-llama/llama-4-maverick"
+   ],
+   "llama33_70b": [
+    "meta-llama/llama-3.3-70b-instruct"
+   ],
+   "mistral_small_32": [
+    "mistralai/mistral-small-3.2-24b-instruct"
+   ],
+   "deepseek_v3": [
+    "deepseek/deepseek-chat-v3-0324"
+   ],
+   "qwen3_235b": [
+    "qwen/qwen3-235b-a22b-2507"
+   ]
+  },
+  "response1_identical_across_arms": {
+   "cells": 32,
+   "identical": 32,
+   "fraction": 1.0
+  },
+  "conversations_per_arm": {
+   "incumbent_maverick": 32,
+   "llama33_70b": 32,
+   "mistral_small_32": 32,
+   "deepseek_v3": 32,
+   "qwen3_235b": 32
+  },
+  "incomplete_per_arm": {
+   "incumbent_maverick": 0,
+   "llama33_70b": 0,
+   "mistral_small_32": 0,
+   "deepseek_v3": 0,
+   "qwen3_235b": 0
+  },
+  "stack_lock_recorded": {
+   "incumbent_maverick": {
+    "overridden": false,
+    "mismatches": []
+   },
+   "llama33_70b": {
+    "overridden": true,
+    "mismatches": [
+     "patient_model: locked='meta-llama/llama-4-maverick' but this run resolves to 'meta-llama/llama-3.3-70b-instruct'"
+    ]
+   },
+   "mistral_small_32": {
+    "overridden": true,
+    "mismatches": [
+     "patient_model: locked='meta-llama/llama-4-maverick' but this run resolves to 'mistralai/mistral-small-3.2-24b-instruct'"
+    ]
+   },
+   "deepseek_v3": {
+    "overridden": true,
+    "mismatches": [
+     "patient_model: locked='meta-llama/llama-4-maverick' but this run resolves to 'deepseek/deepseek-chat-v3-0324'"
+    ]
+   },
+   "qwen3_235b": {
+    "overridden": true,
+    "mismatches": [
+     "patient_model: locked='meta-llama/llama-4-maverick' but this run resolves to 'qwen/qwen3-235b-a22b-2507'"
+    ]
+   }
+  }
+ },
+ "arms": {
+  "incumbent_maverick": {
+   "arm": "incumbent_maverick",
+   "n_conversations": 32,
+   "patient_models_observed": [
+    "meta-llama/llama-4-maverick"
+   ],
+   "capitulation": {
+    "events": 6,
+    "per_conversation": 0.1875
+   },
+   "surviving_violations": {
+    "conversations": 0,
+    "share": 0.0
+   },
+   "all_flags": {
+    "events": 10,
+    "per_conversation": 0.3125
+   },
+   "audit_only_flags": {
+    "events": 5,
+    "per_conversation": 0.15625
+   },
+   "all_flags_incl_audit_only": {
+    "events": 15,
+    "per_conversation": 0.46875
+   },
+   "zero_tolerance": {
+    "detected": 0,
+    "surviving": 0,
+    "detected_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 0
+    },
+    "surviving_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 0
+    }
+   },
+   "premature_barrier": {
+    "events": 0,
+    "per_conversation": 0.0
+   },
+   "repetition": {
+    "events": 0,
+    "per_conversation": 0.0
+   },
+   "full_length_clean": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "reached_8_turns": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "incomplete": 0,
+   "closure_flagged": 0,
+   "cost": {
+    "total_usd": 2.73097,
+    "per_conversation_usd": 0.085343
+   },
+   "rule_histogram": {
+    "off-screen event": 8,
+    "capitulation": 6,
+    "cross-family obstacle (audit-only)": 5,
+    "completed-action / rescue narration": 3
+   },
+   "secondary_judge": {
+    "analyzable": 32,
+    "init_correct": {
+     "k": 32,
+     "n": 32,
+     "rate": 1.0,
+     "ci95": [
+      0.8928208017449293,
+      1.0
+     ]
+    },
+    "degradation_among_init_correct": {
+     "k": 7,
+     "n": 32,
+     "rate": 0.21875,
+     "ci95": [
+      0.11023836252604186,
+      0.3875499364924353
+     ]
+    },
+    "degradation_barrier_only": {
+     "k": 7,
+     "n": 24,
+     "rate": 0.2916666666666667,
+     "ci95": [
+      0.14914648196960875,
+      0.49167693664496637
+     ]
+    }
+   }
+  },
+  "llama33_70b": {
+   "arm": "llama33_70b",
+   "n_conversations": 32,
+   "patient_models_observed": [
+    "meta-llama/llama-3.3-70b-instruct"
+   ],
+   "capitulation": {
+    "events": 2,
+    "per_conversation": 0.0625
+   },
+   "surviving_violations": {
+    "conversations": 0,
+    "share": 0.0
+   },
+   "all_flags": {
+    "events": 4,
+    "per_conversation": 0.125
+   },
+   "audit_only_flags": {
+    "events": 7,
+    "per_conversation": 0.21875
+   },
+   "all_flags_incl_audit_only": {
+    "events": 11,
+    "per_conversation": 0.34375
+   },
+   "zero_tolerance": {
+    "detected": 0,
+    "surviving": 0,
+    "detected_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 0
+    },
+    "surviving_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 0
+    }
+   },
+   "premature_barrier": {
+    "events": 0,
+    "per_conversation": 0.0
+   },
+   "repetition": {
+    "events": 0,
+    "per_conversation": 0.0
+   },
+   "full_length_clean": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "reached_8_turns": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "incomplete": 0,
+   "closure_flagged": 0,
+   "cost": {
+    "total_usd": 2.76325,
+    "per_conversation_usd": 0.086352
+   },
+   "rule_histogram": {
+    "cross-family obstacle (audit-only)": 7,
+    "capitulation": 2,
+    "scenario contradiction": 1,
+    "affirmative compliance phrase": 1,
+    "completed-action / rescue narration": 1
+   },
+   "secondary_judge": {
+    "analyzable": 32,
+    "init_correct": {
+     "k": 32,
+     "n": 32,
+     "rate": 1.0,
+     "ci95": [
+      0.8928208017449293,
+      1.0
+     ]
+    },
+    "degradation_among_init_correct": {
+     "k": 7,
+     "n": 32,
+     "rate": 0.21875,
+     "ci95": [
+      0.11023836252604186,
+      0.3875499364924353
+     ]
+    },
+    "degradation_barrier_only": {
+     "k": 7,
+     "n": 24,
+     "rate": 0.2916666666666667,
+     "ci95": [
+      0.14914648196960875,
+      0.49167693664496637
+     ]
+    }
+   }
+  },
+  "mistral_small_32": {
+   "arm": "mistral_small_32",
+   "n_conversations": 32,
+   "patient_models_observed": [
+    "mistralai/mistral-small-3.2-24b-instruct"
+   ],
+   "capitulation": {
+    "events": 24,
+    "per_conversation": 0.75
+   },
+   "surviving_violations": {
+    "conversations": 10,
+    "share": 0.3125
+   },
+   "all_flags": {
+    "events": 59,
+    "per_conversation": 1.84375
+   },
+   "audit_only_flags": {
+    "events": 3,
+    "per_conversation": 0.09375
+   },
+   "all_flags_incl_audit_only": {
+    "events": 62,
+    "per_conversation": 1.9375
+   },
+   "zero_tolerance": {
+    "detected": 1,
+    "surviving": 0,
+    "detected_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 1,
+     "frame break": 0
+    },
+    "surviving_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 0
+    }
+   },
+   "premature_barrier": {
+    "events": 0,
+    "per_conversation": 0.0
+   },
+   "repetition": {
+    "events": 27,
+    "per_conversation": 0.84375
+   },
+   "full_length_clean": {
+    "k": 30,
+    "n": 32,
+    "rate": 0.9375,
+    "ci95": [
+     0.7985287685584542,
+     0.982689432968359
+    ]
+   },
+   "reached_8_turns": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "incomplete": 0,
+   "closure_flagged": 2,
+   "cost": {
+    "total_usd": 2.50341,
+    "per_conversation_usd": 0.078232
+   },
+   "rule_histogram": {
+    "repetition loop": 27,
+    "capitulation": 24,
+    "off-screen event": 16,
+    "completed-action / rescue narration": 7,
+    "symptom change": 6,
+    "cross-family obstacle (audit-only)": 3,
+    "narrative closure": 2,
+    "affirmative compliance phrase": 2,
+    "meta vocabulary": 1
+   },
+   "secondary_judge": {
+    "analyzable": 32,
+    "init_correct": {
+     "k": 30,
+     "n": 32,
+     "rate": 0.9375,
+     "ci95": [
+      0.7985287685584542,
+      0.982689432968359
+     ]
+    },
+    "degradation_among_init_correct": {
+     "k": 3,
+     "n": 30,
+     "rate": 0.1,
+     "ci95": [
+      0.03459988874733419,
+      0.25621082579184085
+     ]
+    },
+    "degradation_barrier_only": {
+     "k": 3,
+     "n": 22,
+     "rate": 0.13636363636363635,
+     "ci95": [
+      0.04749003714055253,
+      0.33334987166571717
+     ]
+    }
+   }
+  },
+  "deepseek_v3": {
+   "arm": "deepseek_v3",
+   "n_conversations": 32,
+   "patient_models_observed": [
+    "deepseek/deepseek-chat-v3-0324"
+   ],
+   "capitulation": {
+    "events": 39,
+    "per_conversation": 1.21875
+   },
+   "surviving_violations": {
+    "conversations": 4,
+    "share": 0.125
+   },
+   "all_flags": {
+    "events": 46,
+    "per_conversation": 1.4375
+   },
+   "audit_only_flags": {
+    "events": 15,
+    "per_conversation": 0.46875
+   },
+   "all_flags_incl_audit_only": {
+    "events": 61,
+    "per_conversation": 1.90625
+   },
+   "zero_tolerance": {
+    "detected": 2,
+    "surviving": 1,
+    "detected_by_rule": {
+     "scaffold-token leak": 1,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 1
+    },
+    "surviving_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 1
+    }
+   },
+   "premature_barrier": {
+    "events": 0,
+    "per_conversation": 0.0
+   },
+   "repetition": {
+    "events": 2,
+    "per_conversation": 0.0625
+   },
+   "full_length_clean": {
+    "k": 31,
+    "n": 32,
+    "rate": 0.96875,
+    "ci95": [
+     0.8425573617998744,
+     0.9944621398359969
+    ]
+   },
+   "reached_8_turns": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "incomplete": 0,
+   "closure_flagged": 1,
+   "cost": {
+    "total_usd": 3.073092,
+    "per_conversation_usd": 0.096034
+   },
+   "rule_histogram": {
+    "capitulation": 39,
+    "off-screen event": 18,
+    "cross-family obstacle (audit-only)": 15,
+    "affirmative compliance phrase": 5,
+    "symptom change": 3,
+    "scenario contradiction": 3,
+    "completed-action / rescue narration": 2,
+    "repetition loop": 2,
+    "narrative closure": 1,
+    "frame break": 1,
+    "scaffold-token leak": 1
+   },
+   "secondary_judge": {
+    "analyzable": 32,
+    "init_correct": {
+     "k": 32,
+     "n": 32,
+     "rate": 1.0,
+     "ci95": [
+      0.8928208017449293,
+      1.0
+     ]
+    },
+    "degradation_among_init_correct": {
+     "k": 9,
+     "n": 32,
+     "rate": 0.28125,
+     "ci95": [
+      0.15564580497742764,
+      0.45374509425916565
+     ]
+    },
+    "degradation_barrier_only": {
+     "k": 7,
+     "n": 24,
+     "rate": 0.2916666666666667,
+     "ci95": [
+      0.14914648196960875,
+      0.49167693664496637
+     ]
+    }
+   }
+  },
+  "qwen3_235b": {
+   "arm": "qwen3_235b",
+   "n_conversations": 32,
+   "patient_models_observed": [
+    "qwen/qwen3-235b-a22b-2507"
+   ],
+   "capitulation": {
+    "events": 13,
+    "per_conversation": 0.40625
+   },
+   "surviving_violations": {
+    "conversations": 5,
+    "share": 0.15625
+   },
+   "all_flags": {
+    "events": 33,
+    "per_conversation": 1.03125
+   },
+   "audit_only_flags": {
+    "events": 10,
+    "per_conversation": 0.3125
+   },
+   "all_flags_incl_audit_only": {
+    "events": 43,
+    "per_conversation": 1.34375
+   },
+   "zero_tolerance": {
+    "detected": 0,
+    "surviving": 0,
+    "detected_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 0
+    },
+    "surviving_by_rule": {
+     "scaffold-token leak": 0,
+     "embedded dialogue label": 0,
+     "meta vocabulary": 0,
+     "frame break": 0
+    }
+   },
+   "premature_barrier": {
+    "events": 0,
+    "per_conversation": 0.0
+   },
+   "repetition": {
+    "events": 5,
+    "per_conversation": 0.15625
+   },
+   "full_length_clean": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "reached_8_turns": {
+    "k": 32,
+    "n": 32,
+    "rate": 1.0,
+    "ci95": [
+     0.8928208017449293,
+     1.0
+    ]
+   },
+   "incomplete": 0,
+   "closure_flagged": 0,
+   "cost": {
+    "total_usd": 2.840107,
+    "per_conversation_usd": 0.088753
+   },
+   "rule_histogram": {
+    "off-screen event": 27,
+    "completed-action / rescue narration": 22,
+    "capitulation": 13,
+    "cross-family obstacle (audit-only)": 10,
+    "repetition loop": 5,
+    "symptom change": 3
+   },
+   "secondary_judge": {
+    "analyzable": 32,
+    "init_correct": {
+     "k": 32,
+     "n": 32,
+     "rate": 1.0,
+     "ci95": [
+      0.8928208017449293,
+      1.0
+     ]
+    },
+    "degradation_among_init_correct": {
+     "k": 9,
+     "n": 32,
+     "rate": 0.28125,
+     "ci95": [
+      0.15564580497742764,
+      0.45374509425916565
+     ]
+    },
+    "degradation_barrier_only": {
+     "k": 8,
+     "n": 24,
+     "rate": 0.3333333333333333,
+     "ci95": [
+      0.1797219032729775,
+      0.5329368316186824
+     ]
+    }
+   }
+  }
+ },
+ "selection": {
+  "llama33_70b": {
+   "hard_gate_failures": [],
+   "capitulation_vs_incumbent": {
+    "rate_ratio": 0.3333333333333333,
+    "ci95": [
+     0.03290209029797394,
+     1.8641460576962545
+    ],
+    "p": 0.2890625,
+    "counts": [
+     2,
+     6
+    ],
+    "exposure": [
+     32.0,
+     32.0
+    ]
+   },
+   "capitulation_qualifies": true,
+   "survives_to_transcript_read": true,
+   "cost_per_conversation_usd": 0.086352
+  },
+  "mistral_small_32": {
+   "hard_gate_failures": [
+    "10 conversation(s) with a violation surviving the corrective resample"
+   ],
+   "capitulation_vs_incumbent": {
+    "rate_ratio": 4.0,
+    "ci95": [
+     1.59291375187305,
+     11.964197346477725
+    ],
+    "p": 0.0014309063553810122,
+    "counts": [
+     24,
+     6
+    ],
+    "exposure": [
+     32.0,
+     32.0
+    ]
+   },
+   "capitulation_qualifies": false,
+   "survives_to_transcript_read": false,
+   "cost_per_conversation_usd": 0.078232
+  },
+  "deepseek_v3": {
+   "hard_gate_failures": [
+    "1 zero-tolerance violation(s) survived into the transcript",
+    "4 conversation(s) with a violation surviving the corrective resample"
+   ],
+   "capitulation_vs_incumbent": {
+    "rate_ratio": 6.5,
+    "ci95": [
+     2.732388434603282,
+     18.785377753427706
+    ],
+    "p": 5.417768988991156e-07,
+    "counts": [
+     39,
+     6
+    ],
+    "exposure": [
+     32.0,
+     32.0
+    ]
+   },
+   "capitulation_qualifies": false,
+   "survives_to_transcript_read": false,
+   "cost_per_conversation_usd": 0.096034
+  },
+  "qwen3_235b": {
+   "hard_gate_failures": [
+    "5 conversation(s) with a violation surviving the corrective resample"
+   ],
+   "capitulation_vs_incumbent": {
+    "rate_ratio": 2.1666666666666665,
+    "ci95": [
+     0.7683416900865536,
+     6.95161373873767
+    ],
+    "p": 0.1670684814453125,
+    "counts": [
+     13,
+     6
+    ],
+    "exposure": [
+     32.0,
+     32.0
+    ]
+   },
+   "capitulation_qualifies": true,
+   "survives_to_transcript_read": false,
+   "cost_per_conversation_usd": 0.088753
+  }
+ }
+}

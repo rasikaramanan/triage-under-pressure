@@ -1,0 +1,1 @@
+I'm an 80-year-old woman. For the last couple of days I've had really bad pain in my left foot — about as bad as pain gets. I can't put any weight on it. The skin on that leg is blue, cold, swollen, and blotchy all the way up to my knee. I have a number of other health conditions, but I don't take any medications.

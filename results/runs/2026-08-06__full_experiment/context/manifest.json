@@ -1,0 +1,250 @@
+{
+  "schema": "tup-run-manifest/1",
+  "out_path": "results/runs/2026-08-06__full_experiment/context/records.jsonl",
+  "design": {
+    "context_arm": "barrier",
+    "response1_sampling": "independent",
+    "patient_framing": "single_message",
+    "concurrency": 4
+  },
+  "grid": {
+    "vignettes": [
+      "001",
+      "002",
+      "003",
+      "004",
+      "005",
+      "006",
+      "007",
+      "008",
+      "009",
+      "010",
+      "011",
+      "012",
+      "013",
+      "014"
+    ],
+    "families": [
+      "control",
+      "caregiving",
+      "transport_ambulance_cost",
+      "work",
+      "cost_medical_debt",
+      "no_insurance",
+      "hospital_fear"
+    ],
+    "advisors": [
+      "openai",
+      "anthropic",
+      "meta",
+      "google",
+      "xai"
+    ],
+    "replicates": 1,
+    "cells_this_invocation": 490
+  },
+  "config": {
+    "providers": {
+      "openai": "openai/gpt-5.6-terra",
+      "anthropic": "anthropic/claude-sonnet-5",
+      "meta": "meta-llama/llama-4-maverick",
+      "google": "google/gemini-3.6-flash",
+      "xai": "x-ai/grok-4.3"
+    },
+    "advisors": [
+      "openai",
+      "anthropic",
+      "meta",
+      "google",
+      "xai"
+    ],
+    "patient": "meta",
+    "judge": "xai",
+    "seed": 20260626,
+    "sampling": {
+      "advisor": {
+        "temperature": 0.7,
+        "max_tokens": 8192
+      },
+      "patient": {
+        "temperature": 0.9,
+        "max_tokens": 4096
+      },
+      "judge": {
+        "temperature": 0.2,
+        "max_tokens": 4096
+      },
+      "guard": {
+        "temperature": 0.0,
+        "max_tokens": 1024
+      }
+    },
+    "max_turns": 8,
+    "max_spend": 45.0,
+    "cache_dir": "writeup/.tup_cache_independent"
+  },
+  "reproducibility": {
+    "effective_top_p": {
+      "policy": "top_p omitted from all requests (provider/OpenRouter default applies)",
+      "openrouter_default_top_p": 1.0,
+      "openrouter_params_doc": "https://openrouter.ai/docs/api/reference/parameters",
+      "last_verified": "2026-07-31",
+      "models": {
+        "openai/gpt-5.6-terra": {
+          "top_p": 1.0,
+          "basis": "OpenAI GPT-5.x REASONING line — accepts NEITHER top_p NOR temperature on any endpoint (verified live 2026-07-31: all endpoints decline both). OpenRouter omits the params and OpenAI applies its fixed defaults; OpenAI states reasoning models 'only support the default (1) value'. Effective top_p 1.0, UNCONFIGURABLE; the configured advisor temperature 0.7 does NOT apply to this model (runs at model default) — documented sampling-coverage exception, same class as the pilot's gpt-5-nano.",
+          "provider": [
+            "Amazon Bedrock",
+            "Azure",
+            "OpenAI"
+          ],
+          "source_url": "https://platform.openai.com/docs/api-reference/chat/create",
+          "last_verified": "2026-07-31",
+          "accepts_top_p": false
+        },
+        "anthropic/claude-sonnet-5": {
+          "top_p": 1.0,
+          "basis": "Adaptive-thinking model — accepts NEITHER top_p NOR temperature on any endpoint (verified live 2026-07-31). OpenRouter omits the params; Anthropic's default sampling applies (nucleus off = effective 1.0). UNCONFIGURABLE; the advisor temperature 0.7 and panel-judge temperature 0.2 do NOT apply to this model — documented sampling-coverage exception.",
+          "provider": [
+            "Amazon Bedrock",
+            "Anthropic",
+            "Azure",
+            "Google"
+          ],
+          "source_url": "https://docs.anthropic.com/en/api/messages",
+          "last_verified": "2026-07-31",
+          "accepts_top_p": false
+        },
+        "meta-llama/llama-3.3-70b-instruct": {
+          "top_p": 1.0,
+          "basis": "Patient simulator, kept off the advisor slate by design (the simulator must not be one of the five advisor models under test). Accepts top_p on every served endpoint -> OpenRouter injects its documented default top_p=1.0 for the omitted parameter before forwarding upstream. The provider list is the OBSERVED routing set (12 endpoints, re-verified live 2026-08-05, top_p accepted unanimously); the run pins routing to DeepInfra/Novita for price stability, which is recorded separately in config/models.yaml provider_pins.",
+          "provider": [
+            "AkashML",
+            "Cloudflare",
+            "CoreWeave",
+            "Crusoe",
+            "DeepInfra",
+            "Google",
+            "Groq",
+            "Nebius",
+            "Novita",
+            "Parasail",
+            "SambaNova",
+            "Together"
+          ],
+          "source_url": "https://openrouter.ai/docs/api/reference/parameters",
+          "last_verified": "2026-08-05",
+          "accepts_top_p": true
+        },
+        "meta-llama/llama-4-maverick": {
+          "top_p": 1.0,
+          "basis": "Accepts top_p on every served endpoint → OpenRouter injects its documented default top_p=1.0 for the omitted parameter before forwarding upstream.",
+          "provider": [
+            "DeepInfra",
+            "DigitalOcean",
+            "Google",
+            "Novita",
+            "Parasail"
+          ],
+          "source_url": "https://openrouter.ai/docs/api/reference/parameters",
+          "last_verified": "2026-07-31",
+          "accepts_top_p": true
+        },
+        "google/gemini-3.6-flash": {
+          "top_p": 1.0,
+          "basis": "SPLIT endpoints (verified live 2026-07-31): Google AI Studio endpoints accept top_p/temperature; Google Vertex endpoints do not. TUP PINS routing to Google AI Studio (config/models.yaml provider_pins + allow_fallbacks:false), so on the pinned route OpenRouter injects its documented default top_p=1.0 for the omitted parameter and the configured temperatures apply. The unanimity check is replaced by the pin check for this entry.",
+          "provider": [
+            "Google",
+            "Google AI Studio"
+          ],
+          "pinned_provider": "Google AI Studio",
+          "source_url": "https://openrouter.ai/docs/api/reference/parameters",
+          "last_verified": "2026-07-31",
+          "accepts_top_p": true,
+          "native_default_note": "Gemini native topP ~0.95 would apply on an unpinned Vertex route (which rejects the param) — the AI-Studio pin is what keeps the effective value at the injected 1.0."
+        },
+        "google/gemini-3.5-flash-lite": {
+          "top_p": 1.0,
+          "basis": "GUARD-ONLY slug (patient role-compliance classifier, selected 2026-08-03). SPLIT endpoints (verified live 2026-08-03, same shape as gemini-3.6-flash): Google AI Studio endpoints accept top_p/temperature; Google Vertex endpoints do not. TUP PINS routing to Google AI Studio (config/models.yaml provider_pins + allow_fallbacks:false), so on the pinned route OpenRouter injects its documented default top_p=1.0 for the omitted parameter and the guard temperature 0.0 applies. Non-reasoning model — chosen after gemini-3.6-flash's MANDATORY hidden reasoning emptied ~35% of guard verdicts in smoke 5.",
+          "provider": [
+            "Google",
+            "Google AI Studio"
+          ],
+          "pinned_provider": "Google AI Studio",
+          "source_url": "https://openrouter.ai/docs/api/reference/parameters",
+          "last_verified": "2026-08-03",
+          "accepts_top_p": true
+        },
+        "x-ai/grok-4.3": {
+          "top_p": 1.0,
+          "basis": "Accepts top_p on every served endpoint → OpenRouter injects its documented default top_p=1.0 for the omitted parameter before forwarding upstream.",
+          "provider": [
+            "xAI"
+          ],
+          "source_url": "https://openrouter.ai/docs/api/reference/parameters",
+          "last_verified": "2026-07-31",
+          "accepts_top_p": true
+        }
+      }
+    },
+    "top_p_verified_at": "2026-08-06T18:20:34.084942+00:00"
+  },
+  "stack_lock": {
+    "lock_name": "run1",
+    "locked_on": "2026-08-05",
+    "checked": {
+      "patient_framing": "single_message",
+      "patient_prompt_version": 12,
+      "families_version": 16,
+      "patient_model": "meta-llama/llama-3.3-70b-instruct",
+      "advisor_option": "A",
+      "n_families": 7,
+      "max_turns": 8,
+      "guard_version": "1.5.0",
+      "judge_prompt_version": 9
+    },
+    "mismatches": [],
+    "overridden": false
+  },
+  "run": {
+    "started_at": "2026-08-06T18:20:34.085413+00:00",
+    "ended_at": "2026-08-06T18:36:27.568067+00:00",
+    "completed": 31,
+    "skipped": 459,
+    "failed": 0,
+    "aborted": false,
+    "abort_reason": null
+  },
+  "complete": true,
+  "audit_sample": [
+    "001__work__google__r0",
+    "002__transport_ambulance_cost__xai__r0",
+    "005__caregiving__meta__r0",
+    "007__caregiving__meta__r0",
+    "008__no_insurance__meta__r0",
+    "003__caregiving__meta__r0",
+    "007__work__meta__r0",
+    "005__cost_medical_debt__meta__r0",
+    "009__hospital_fear__meta__r0",
+    "009__caregiving__meta__r0",
+    "008__transport_ambulance_cost__meta__r0",
+    "011__work__anthropic__r0",
+    "012__cost_medical_debt__xai__r0",
+    "012__no_insurance__anthropic__r0",
+    "014__hospital_fear__anthropic__r0",
+    "006__control__meta__r0",
+    "013__caregiving__xai__r0",
+    "002__transport_ambulance_cost__openai__r0",
+    "013__work__openai__r0",
+    "003__cost_medical_debt__openai__r0"
+  ],
+  "cost": {
+    "n_conversations": 490,
+    "turns_usd": 22.312196320000012,
+    "judge_usd": 16.108922200000002,
+    "total_usd": 38.421118520000014,
+    "missing_cost_turns": 0,
+    "judge_calls_missing_cost": 47,
+    "is_lower_bound": true
+  }
+}

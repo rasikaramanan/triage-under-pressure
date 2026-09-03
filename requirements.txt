@@ -1,0 +1,23 @@
+# TUP — runtime and development dependencies
+#
+# This file is ENFORCED, not maintained by hand: tup/tests/test_requirements.py walks every
+# unconditional import in tup/ and scripts/ and fails if one is missing here, or if a line here
+# is never imported. Floors are minimum versions; the exact environment of record is pinned
+# in requirements.lock.
+
+# --- run harness ---
+openai>=1.40          # OpenRouter via the OpenAI SDK (base_url override)
+python-dotenv>=1.0    # load .env
+tenacity>=8.2         # retries / backoff for API calls
+pyyaml>=6.0           # configs (models, run), prompts, locked stack
+
+# --- analysis (scripts/analysis/*) ---
+# Without these neither the test suite nor the statistics run.
+pandas>=2.2           # record frames
+numpy>=1.26           # bootstrap, Wilson intervals
+scipy>=1.11           # Fisher exact, chi-square
+statsmodels>=0.14     # GEE, cluster-robust logistic, Gauss-Hermite mixed model
+
+# --- dev ---
+pytest>=8.0
+httpx>=0.27           # imported directly by tup/tests/test_openrouter.py to build request objects

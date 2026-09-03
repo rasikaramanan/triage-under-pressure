@@ -1,0 +1,276 @@
+% TUP — references cited by this repository (documentation, vignette provenance dossiers,
+% and the write-up page). Every entry's authors/venue/identifier was verified against its
+% registry record (CrossRef / the arXiv API) before entry.
+%
+% The correspondence runs both ways: this file holds only entries that are cited somewhere in
+% the repository, and every bib-key citation in the repository resolves to an entry here. The
+% provenance dossiers additionally cite clinical guidelines inline, by full reference.
+
+@inproceedings{kim2026doctor,
+  title     = {The Doctor Will Agree With You Now: Sycophancy of Large Language Models in Multi-Turn Medical Conversations},
+  author    = {Kim, Taeil Matthew and Luo, Luyang and Kim, Sung Eun and Manrai, Arjun Kumar and Topol, Eric and Rajpurkar, Pranav},
+  booktitle = {Proceedings of the 1st Workshop on Linguistic Analysis for Health (HeaLing 2026)},
+  pages     = {19--34},
+  year      = {2026},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2026.healing-1.2},
+  url       = {https://aclanthology.org/2026.healing-1.2/}
+  % Prior work cited in PROJECT_SPEC.md and the write-up references (site/index.html, ref-5):
+  % multi-turn medical pushback scored with a resistance-style per-turn metric.
+  % VERIFIED (ACL Anthology 2026.healing-1.2 + DOI, 2026-09-02: title, authors, pages 19-34,
+  % and workshop name all match this entry).
+}
+
+@article{chatgpthealth2026triage,
+  title   = {ChatGPT Health performance in a structured test of triage recommendations},
+  author  = {Ramaswamy, Ashwin and Tyagi, Alvira and Hugo, Hannah and Jiang, Joy and Jayaraman, Pushkala and Jangda, Mateen and Te, Alexis E. and Kaplan, Steven A. and Lampert, Joshua and Freeman, Robert and Gavin, Nicholas and Tewari, Ashutosh K. and Sakhuja, Ankit and Naved, Bilal and Charney, Alexander W. and Omar, Mahmud and Gorin, Michael A. and Klang, Eyal and Nadkarni, Girish N.},
+  journal = {Nature Medicine},
+  volume  = {32},
+  number  = {5},
+  pages   = {1671--1675},
+  year    = {2026},
+  doi     = {10.1038/s41591-026-04297-7},
+  url     = {https://www.nature.com/articles/s41591-026-04297-7}
+  % The external clinician-vetted source of vignettes 001-006 and their gold
+  % (vignettes/provenance/sources/chatgpthealth2026triage.md), and the foundation study TUP
+  % builds on -- cited in the write-up references (site/index.html, ref-1).
+  % VERIFIED (CrossRef 2026-06-20).
+}
+
+@article{semigran2015triage,
+  title   = {Evaluation of symptom checkers for self diagnosis and triage: audit study},
+  author  = {Semigran, Hannah L. and Linder, Jeffrey A. and Gidengil, Courtney and Mehrotra, Ateev},
+  journal = {BMJ},
+  volume  = {351},
+  pages   = {h3480},
+  year    = {2015},
+  doi     = {10.1136/bmj.h3480},
+  url     = {https://www.bmj.com/content/351/bmj.h3480}
+  % The external source of vignette 007 and its gold -- 45 vignettes with physician-assigned gold, tier "emergent care required" (vignettes/provenance/sources/semigran2015triage.md; write-up
+  % references, ref-12).
+  % VERIFIED (CrossRef 2026-07-27).
+}
+
+@article{schmieding2021benchmark,
+  title   = {Benchmarking Triage Capability of Symptom Checkers Against That of Medical Laypersons: Survey Study},
+  author  = {Schmieding, Malte L. and M{\"o}rgeli, Rudolf and Schmieding, Maike A. L. and Feufel, Markus A. and Balzer, Felix},
+  journal = {Journal of Medical Internet Research},
+  volume  = {23},
+  number  = {3},
+  pages   = {e24475},
+  year    = {2021},
+  doi     = {10.2196/24475},
+  url     = {https://www.jmir.org/2021/3/e24475}
+  % Cited in the write-up references (site/index.html, ref-14; appendix A10 "source [14]") and in
+  % vignettes/provenance/sources/semigran2015triage.md and 007_liver_failure.md: its
+  % Multimedia Appendix 1 supplies the per-vignette difficulty data that qualified 007 as "less
+  % obvious", and the clinical rendering 007 was adapted from.
+  % VERIFIED (CrossRef 2026-07-27).
+}
+
+@article{kopka2022laypersons,
+  title   = {The Triage Capability of Laypersons: Retrospective Exploratory Analysis},
+  author  = {Kopka, Marvin and Feufel, Markus A. and Balzer, Felix and Schmieding, Malte L.},
+  journal = {JMIR Formative Research},
+  volume  = {6},
+  number  = {10},
+  pages   = {e38977},
+  year    = {2022},
+  doi     = {10.2196/38977},
+  url     = {https://formative.jmir.org/2022/10/e38977}
+  % Cited in vignettes/provenance/sources/semigran2015triage.md: set-level corroboration for the
+  % Semigran family behind 007 (laypeople's emergency-detection sensitivity 67.5%).
+  % VERIFIED (CrossRef 2026-07-27).
+}
+
+@article{kopka2023vignettes,
+  title   = {How suitable are clinical vignettes for the evaluation of symptom checker apps? A test theoretical perspective},
+  author  = {Kopka, Marvin and Feufel, Markus A. and Berner, Eta S. and Schmieding, Malte L.},
+  journal = {DIGITAL HEALTH},
+  volume  = {9},
+  year    = {2023},
+  doi     = {10.1177/20552076231194929},
+  url     = {https://journals.sagepub.com/doi/10.1177/20552076231194929}
+  % Cited in vignettes/provenance/sources/semigran2015triage.md and SELECTION_METHODOLOGY.md as
+  % the psychometric caveat on 007's source set (item-total correlation < 0.2 across all 15
+  % Semigran emergency vignettes).
+  % VERIFIED (CrossRef 2026-07-27).
+}
+
+@article{ceney2021checkers,
+  title   = {Accuracy of online symptom checkers and the potential impact on service utilisation},
+  author  = {Ceney, Adam and Tolond, Stephanie and Glowinski, Andrzej and Marks, Ben and Swift, Simon and Palser, Tom},
+  journal = {PLOS ONE},
+  volume  = {16},
+  number  = {7},
+  pages   = {e0254088},
+  year    = {2021},
+  doi     = {10.1371/journal.pone.0254088},
+  url     = {https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254088}
+  % Cited in vignettes/provenance/sources/semigran2015triage.md and 007_liver_failure.md: the
+  % independent NICE-anchored re-review (GP + pharmacist + emergency-care consultant) that
+  % corroborates 007's emergent gold.
+  % VERIFIED (CrossRef 2026-07-27).
+}
+
+@article{brown2025selftriage,
+  title   = {Evaluation of Artificial Intelligence for Patient Self-Triage: Comparison of General-Purpose AI Platforms With the NHS 111 Online Symptom Checker in the United Kingdom},
+  author  = {Brown, Hannah L.},
+  journal = {Cureus},
+  year    = {2025},
+  doi     = {10.7759/cureus.97834},
+  url     = {https://doi.org/10.7759/cureus.97834}
+  % The external source of vignettes 011-012 and their gold -- first-person vignettes printed in
+  % the Appendix, gold "Emergency department" (vignettes/provenance/sources/brown2025selftriage.md;
+  % write-up references, ref-11).
+  % VERIFIED (CrossRef 2026-07-27).
+}
+
+@article{wallace2024mivignettes,
+  title   = {Evaluating the diagnostic and triage performance of digital and online symptom checkers for the presentation of myocardial infarction; A retrospective cross-sectional study},
+  author  = {Wallace, William and Chan, Calvin and Chidambaram, Swathikan and Hanna, Lydia and Acharya, Amish and Daniels, Elisabeth and Normahani, Pasha and Matin, Rubeta N. and Markar, Sheraz R. and Sounderajah, Viknesh and Liu, Xiaoxuan and Darzi, Ara},
+  journal = {PLOS Digital Health},
+  volume  = {3},
+  number  = {8},
+  pages   = {e0000558},
+  year    = {2024},
+  doi     = {10.1371/journal.pdig.0000558},
+  url     = {https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000558}
+  % The external source, and figshare deposit, of vignette 013 and its gold -- 100
+  % angiography-confirmed MI vignettes (vignettes/provenance/sources/wallace2024mivignettes.md;
+  % write-up references, ref-13).
+  % VERIFIED (CrossRef 2026-07-27).
+}
+
+@article{hill2020checkers,
+  title   = {The quality of diagnosis and triage advice provided by free online symptom checkers and apps in Australia},
+  author  = {Hill, Michella G. and Sim, Moira and Mills, Brennen},
+  journal = {Medical Journal of Australia},
+  volume  = {212},
+  number  = {11},
+  pages   = {514--519},
+  year    = {2020},
+  doi     = {10.5694/mja2.50600},
+  url     = {https://doi.org/10.5694/mja2.50600}
+  % Cited in vignettes/provenance/sources/semigran2015triage.md and 007_liver_failure.md: its SI
+  % Table 1 supplies the recorded dissent annotation on 007 ("Triage could be emergent or urgent").
+  % VERIFIED (CrossRef 2026-07-27); the publisher's SI copy 404s, so the annotation is checked
+  % against the Internet Archive snapshot 2025-08-10:
+  % https://web.archive.org/web/20250810122540if_/https://www.mja.com.au/sites/default/files/issues/212_11/mja250600-sup-0001-Supinfo.pdf
+}
+
+@article{ilicki2025triageerrors,
+  title   = {Evaluating digital triage symptom checker with historical triage-related adverse events},
+  author  = {Ilicki, Jonathan and Edman, Sandra and Stalfors, Joacim and Molin, Carl Johan},
+  journal = {Scandinavian Journal of Primary Health Care},
+  volume  = {44},
+  number  = {1},
+  pages   = {1--14},
+  year    = {2025},
+  doi     = {10.1080/02813432.2025.2563517},
+  url     = {https://doi.org/10.1080/02813432.2025.2563517}
+  % The external source of vignettes 008-010 and 014 and their gold -- 64 vignettes from Swedish
+  % adverse-event reports, adopted cases all top tier "Immediate"
+  % (vignettes/provenance/sources/ilicki2025triageerrors.md; write-up references, ref-10).
+  % VERIFIED (CrossRef 2026-07-31).
+}
+
+@misc{sycoevalem2026,
+  title         = {SycoEval-EM: Sycophancy Evaluation of Large Language Models in Simulated Clinical Encounters for Emergency Care},
+  author        = {Peng, Dongshen and Wang, Yi and Schoeffler, Austin and Hong, Sun-ha and Suffoletto, Brian and Kim, David and Preiksaitis, Carl and Rose, Christian},
+  year          = {2026},
+  eprint        = {2601.16529},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2601.16529}
+  % Prior work cited in the write-up references (site/index.html, ref-2);
+  % also the anchor config/models.yaml names for TUP's sampling settings.
+  % VERIFIED (arXiv abs page, 2026-09-02: title and the current 8-author list match; the entry's
+  % earlier 5-author list was arXiv v1's, superseded by the 2026-07-07 revision).
+}
+
+@misc{medqafollowup2025,
+  title         = {Shallow Robustness, Deep Vulnerabilities: Multi-Turn Evaluation of Medical LLMs},
+  author        = {Manczak, Blazej and Lin, Eric and Eiras, Francisco and O'Neill, James and Mugunthan, Vaikkunth},
+  year          = {2025},
+  eprint        = {2510.12255},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2510.12255},
+  note          = {Poster, NeurIPS 2025 Workshop on GenAI for Health}
+  % Prior work cited in the write-up references (site/index.html, ref-3):
+  % multi-turn robustness of medical LLMs under generic pressure levers, on medical QA not triage.
+  % VERIFIED (arXiv API 2026-06-20; venue re-checked 2026-09-02 -- the abs page's Comments field
+  % reads "Accepted as a poster at NeurIPS 2025 Workshop on GenAI for Health"; no archival
+  % proceedings version found, so the arXiv preprint stays the cited object).
+}
+
+@misc{medstress2026,
+  title         = {When Correct Beliefs Collapse: Epistemic Resilience of LLMs under Clinical Pressure},
+  author        = {Xiao, Boyu and Tian, Xiuqi and Song, Xuwen and Wang, Haochun and Song, Guanchun and Zhao, Sendong and Qin, Bing},
+  year          = {2026},
+  eprint        = {2605.23932},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2605.23932},
+  note          = {Accepted to ACL 2026 (main conference)}
+  % Prior work cited in the write-up references (site/index.html, ref-4):
+  % multi-turn clinical sycophancy under escalating pressure, on diagnostic QA not triage.
+  % VERIFIED (arXiv API 2026-06-20; venue re-checked 2026-09-02 -- the abs page's Comments field
+  % reads "ACL 2026" and the paper appears on the ACL 2026 accepted main-conference list at
+  % 2026.aclweb.org; no ACL Anthology record located yet, so the arXiv preprint stays the cited object).
+}
+
+@misc{mint2026,
+  title         = {Benchmarking Multi-turn Medical Diagnosis: Hold, Lure, and Self-Correction},
+  author        = {Fang, Jinrui and Chen, Runhan and Yang, Xu and Yu, Jian and Xu, Jiawei and Vinod, Ashwin and Shi, Wenqi and Chen, Tianlong and Ji, Heng and Zhai, ChengXiang and Ding, Ying and Zhang, Yuji},
+  year          = {2026},
+  eprint        = {2604.04325},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2604.04325}
+  % Prior work cited in the write-up references (site/index.html, ref-6):
+  % multi-turn medical diagnosis on hold / lure / self-correction axes, not triage.
+  % VERIFIED (arXiv API 2026-06-20).
+}
+
+@misc{userlm2025,
+  title         = {Flipping the Dialogue: Training and Evaluating User Language Models},
+  author        = {Naous, Tarek and Laban, Philippe and Xu, Wei and Neville, Jennifer},
+  year          = {2025},
+  eprint        = {2510.06552},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2510.06552}
+  % Prior work cited in the write-up references (site/index.html, ref-7): evidence that the choice
+  % of user simulator materially changes the measured capability of the system under test, which is
+  % why TUP treats its patient simulator as an instrument to be calibrated.
+  % VERIFIED 2026-08-06 (arxiv.org/abs/2510.06552).
+}
+
+@misc{tau2bench2025,
+  title         = {$\tau^2$-Bench: Evaluating Conversational Agents in a Dual-Control Environment},
+  author        = {Barres, Victor and Dong, Honghua and Ray, Soham and Si, Xujie and Narasimhan, Karthik},
+  year          = {2025},
+  eprint        = {2506.07982},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url           = {https://arxiv.org/abs/2506.07982}
+  % Prior work cited in the write-up references (site/index.html, ref-8): treats user-simulator
+  % fidelity as a first-class measurement problem, the prior art behind TUP's fidelity guard.
+  % VERIFIED 2026-08-06 (arxiv.org/abs/2506.07982).
+}
+
+@misc{patientsim2025,
+  title         = {PatientSim: A Persona-Driven Simulator for Realistic Doctor-Patient Interactions},
+  author        = {Kyung, Daeun and Chung, Hyunseung and Bae, Seongsu and Kim, Jiho and Sohn, Jae Ho and Kim, Taerim and Kim, Soo Kyung and Choi, Edward},
+  year          = {2025},
+  eprint        = {2505.17818},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2505.17818}
+  % Prior work cited in the write-up references (site/index.html, ref-9): the closest prior art for
+  % a fidelity-evaluated, persona-driven patient simulator.
+  % VERIFIED 2026-08-06 (arxiv.org/abs/2505.17818).
+}
+

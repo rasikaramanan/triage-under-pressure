@@ -1,0 +1,62 @@
+# ============================================================================================
+# HISTORICAL RECORD — DO NOT RUN ANY COMMAND BELOW.
+#
+# Everything under this header is preserved verbatim as the audit trail of how this run was
+# actually launched on 2026-08-05/06. It predates the store refactor, and every command in it is
+# now wrong: the launcher itself was renamed (scripts/run_pilot.py is now scripts/run_experiment.py),
+# --stem is now --run-name, --out, --context-arm and --replicates no longer exist,
+# `scripts/rejudge.py --in/--in-place` is now `rejudge.py <run-id> --arm <arm>`, and the
+# ./writeup worktree it cd's into was deleted. The "USE THIS EXACT COMMAND TO RESUME" line below was true when written and is not
+# true now.
+#
+# To resume a run today:
+#     python scripts/run_experiment.py --continue 2026-08-06__full_experiment \
+#         --max-spend <N> --max-turns 8
+# (This run is complete, so that command will report there is nothing to do.)
+# ============================================================================================
+
+# TUP redo run — main arm (Option A). Launched 2026-08-05 from the `prelaunch_audit_report`
+# worktree at ./writeup (HEAD 81f0d7d). USE THIS EXACT COMMAND TO RESUME — the --out is what
+# puts the data of record in the MAIN repo's runs/ rather than the worktree's.
+cd writeup
+conda activate tup
+python scripts/run_pilot.py --stem redo_run \
+  --out runs/redo_run.jsonl \
+  --max-spend 140
+# Context arm (AFTER the main arm completes; R=1):
+# python scripts/run_pilot.py --stem redo_run --context-arm barrier --replicates 1 \
+#   --out .../runs/redo_run_ctx.jsonl --max-spend <remaining balance minus safety>
+
+# ============================================================================
+# BACKFILL SEQUENCE — run LATER TONIGHT, after Google's shared pool resets
+# (decision 2026-08-06: no BYOK Gemini key; wait for the pool instead).
+#
+# IMPORTANT: do NOT edit prompts/, config/locked_stack.yaml, or the guard before
+# backfilling. The resume guard compares the manifest's recorded instrument
+# versions against the live ones and will refuse to append if any term moved.
+# ============================================================================
+
+cd writeup
+conda activate tup
+M=<repo-root>   # absolute local path redacted for release
+
+# 1. Main arm: re-runs only the cells absent from the run file (the 19 google 429s).
+python scripts/run_pilot.py --stem redo_run --out "$M/runs/redo_run.jsonl" \
+  --concurrency 4 --max-spend 25
+
+# 2. Context arm: same, for its google failures.
+python scripts/run_pilot.py --stem redo_run --context-arm barrier --replicates 1 \
+  --out "$M/runs/redo_run_ctx.jsonl" --concurrency 4 --max-spend 25
+
+# 3. Re-judge the judge_failed records (resume can NEVER fix these — the record
+#    exists, so its id is in the done-set and is skipped forever).
+python scripts/rejudge.py --in "$M/runs/redo_run.jsonl" --in-place
+python scripts/rejudge.py --in "$M/runs/redo_run_ctx.jsonl" --in-place
+
+# 4. Verify + rebuild the viewer.
+python scripts/build_viewer.py
+2026-09-03T19:42:32Z  python scripts/rejudge.py 2026-08-06__full_experiment --arm context --all --max-spend 30 --concurrency 16
+2026-09-03T19:45:48Z  python scripts/rejudge.py 2026-08-06__full_experiment --arm context --all --max-spend 30 --concurrency 16
+2026-09-03T20:00:54Z  python scripts/rejudge.py 2026-08-06__full_experiment --arm main --all --max-spend 70 --concurrency 16
+2026-09-03T20:32:33Z  python scripts/rejudge.py 2026-08-06__full_experiment --arm main --all --max-spend 17 --concurrency 8
+2026-09-03  scripts/rejudge.py — both arms re-judged under judge prompt v9 (all 1,960 conversations; transcripts, seeds and panel seats unchanged). instrument/prompts/judge/system.md and the lock's judge_prompt_version were then replaced with v9, the rubric every reported judgment was produced under; the earlier rubric is not relevant to any reported result and was replaced to avoid confusion.

@@ -1,0 +1,15 @@
+vignette_id,source_key,condition,cohort,review_status,gold_driver_preserved
+001,chatgpthealth2026triage,Acute asthma exacerbation,pilot,locked,yes
+002,chatgpthealth2026triage,Diabetic ketoacidosis,pilot,locked,yes
+003,chatgpthealth2026triage,Acute ischemic stroke,pilot,locked,yes
+004,chatgpthealth2026triage,Anaphylaxis,pilot,locked,yes
+005,chatgpthealth2026triage,Bacterial meningitis,pilot,locked,yes
+006,chatgpthealth2026triage,Acute aortic dissection,pilot,locked,yes
+007,semigran2015triage,Acetaminophen-induced acute liver failure,expansion,locked,yes
+008,ilicki2025triageerrors,Not published by source (urgency-only gold),expansion,locked,yes
+009,ilicki2025triageerrors,Not published by source (urgency-only gold),expansion,locked,yes
+010,ilicki2025triageerrors,Not published by source (urgency-only gold),expansion,locked,yes
+011,brown2025selftriage,Acute angle-closure glaucoma,expansion,locked,yes
+012,brown2025selftriage,Ectopic pregnancy,expansion,locked,yes
+013,wallace2024mivignettes,Myocardial infarction (female-atypical presentation),expansion,locked,yes
+014,ilicki2025triageerrors,Not published by source (urgency-only gold),expansion,locked,yes

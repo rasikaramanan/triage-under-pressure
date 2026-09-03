@@ -1,0 +1,68 @@
+# TUP full run — model registry (all models routed via OpenRouter).
+#
+# The `id` values below are the cheapest-capable slug per role, researched
+# against live OpenRouter model pages (advisor = model under test, cheapest tier per
+# provider; patient/judge = cheapest capable infra). Slugs still drift — the client
+# validates configured IDs against the live list at startup.
+#
+# What IS authoritative here is the role assignment + provider mapping. STRUCTURAL RULE:
+# leave-one-provider-out applies
+# ONLY judge-vs-advisor — no judge may share a provider with the advisor it judges. The
+# patient MAY share a provider with the advisor (meta advises AND supplies the patient model).
+# With `judge_panel: 3`, each conversation's panel is drawn from the 4 providers != that
+# conversation's advisor, rotating which one sits out (tup/client/provider.py panel_for;
+# per-conversation seats: config/roster.csv).
+
+# Slate chosen deliberately ("models people actually use", cost-balanced): each provider's slug
+# is its advisor AND its judge-seat model; the patient role overrides to the dedicated simulator
+# via `patient_model` below.
+providers:                       # provider family -> chosen model id  ($/M in · out, verified against live pricing before launch)
+  openai:    openai/gpt-5.6-terra             # 1.00 · 6.00   (GPT-5.6 balanced tier; NO temp/top_p — whole GPT-5.x line rejects sampling params)
+  anthropic: anthropic/claude-sonnet-5        # 2.00 · 10.00  (claude.ai default; NO temp/top_p)
+  meta:      meta-llama/llama-4-maverick      # 0.20 · 0.80   (flagship open-weight; temp/top_p OK; prices are the DeepInfra floor -> pinned below)
+  google:    google/gemini-3.6-flash          # 1.50 · 7.50   (Gemini-app default workhorse; temp/top_p ONLY on AI-Studio endpoints -> pinned below)
+  xai:       x-ai/grok-4.3                    # 1.25 · 2.50   (volume default; temp/top_p OK)
+
+# Per-model OpenRouter provider-routing pins (request `provider.order` + `allow_fallbacks: false`).
+# gemini-3.6-flash MUST route via Google AI Studio so patient/judge sampling params apply.
+# llama-4-maverick pins the two cheapest full-context endpoints (DeepInfra 0.20·0.80, Novita
+# 0.27·0.85, both 1M ctx): the 2-provider order keeps availability headroom while capping price
+# near the floor.
+provider_pins:
+  google/gemini-3.6-flash: ["Google AI Studio"]
+  google/gemini-3.5-flash-lite: ["Google AI Studio"]   # guard classifier: same split-endpoint issue (Vertex rejects sampling params)
+  meta-llama/llama-4-maverick: ["DeepInfra", "Novita"]
+  meta-llama/llama-3.3-70b-instruct: ["DeepInfra", "Novita"]   # pinned to the list-price endpoints
+
+roles:
+  advisors:                      # models under test — full run: ALL FIVE provider families
+    - openai
+    - anthropic
+    - meta
+    - google
+    - xai
+  patient: meta                  # fixed patient PROVIDER (may share the advisor's provider; only judge-vs-advisor is excluded)
+  patient_model: meta-llama/llama-3.3-70b-instruct  # the simulator must not be one of the five advisors (the patient must never double as an advisor under test — self-play would be unfalsifiable). Chosen by a five-model fidelity comparison summarized in the write-up's calibration section (site/index.html); its records and stats ship under results/studies/2026-08-06__patient_fidelity and results/analysis/stats/2026-08-06__patient_fidelity.
+  judge_panel: 3                 # per-conversation 3-judge panel, providers != advisor, rotating sit-out
+  guard_model: google/gemini-3.5-flash-lite  # patient role-compliance guard classifier. The
+  #                               guard model must have NO mandatory hidden reasoning: reasoning
+  #                               spends the 1024-token guard cap on invisible tokens (empty
+  #                               verdicts at a multiple of the cost). flash-lite: no reasoning;
+  #                               ~$0.0013/call measured in the reported run ($18.44 over 13,720 classified turns). The guard is
+  #                               APPARATUS (instrument calibration, not a judge), so the
+  #                               leave-one-provider-out rule does not apply. Absent => guard disabled.
+  #                               tup/orchestration/guard.py
+
+sampling:                        # temps anchored to sycoevalem2026 (nearest prior-art twin: OpenRouter, 3 live agents, multi-turn)
+  advisor: { temperature: 0.7, max_tokens: 8192 }   # temperature follows the prior-art anchor; 8192 gives reasoning advisors visible-output headroom (a reasoning model can consume most of 4096 before its visible response)
+  patient: { temperature: 0.9, max_tokens: 4096 }   # = the prior-art anchor's patient temp; 4096 = generous cap, length still bound by prompt
+  judge:   { temperature: 0.2, max_tokens: 4096 }   # sycoevalem2026's 0.2 pairs with the 3-judge panel; kept at 4096 (a finally-truncated judge surfaces as unparseable + retry)
+  guard:   { temperature: 0.0, max_tokens: 1024 }   # role-compliance classifier: deterministic verdicts, tiny JSON output
+
+seed: 20260626                    # base RNG seed (reproducibility anchor). The runner derives a DISTINCT
+                                  # per-conversation seed (seed + replicate_index + family_id x 1000,
+                                  # tup/orchestration/runner.py conversation_seed) so replicates and
+                                  # conditions actually vary; the client threads the effective seed into BOTH
+                                  # the API request AND the response-cache key — without this, replicates of an
+                                  # otherwise-identical call (e.g. the shared pre-barrier response-1) collapse
+                                  # onto one cache entry and N silently shrinks.

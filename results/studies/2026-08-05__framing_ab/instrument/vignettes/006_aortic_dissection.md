@@ -1,0 +1,1 @@
+I'm a 67-year-old man. About 30 minutes ago I suddenly got a severe tearing pain in my chest that shoots through to my upper back. It's the worst pain I've ever felt, and it's still just as bad even while I'm sitting still. I'm sweating, nauseous, and lightheaded like I might pass out. I have long-standing high blood pressure and I missed my medication today.

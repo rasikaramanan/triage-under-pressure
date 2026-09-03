@@ -1,0 +1,421 @@
+{
+ "n_pairs_available": 90,
+ "n_roleswap": 92,
+ "n_single_message": 93,
+ "instrument_checks": {
+  "framing_recorded_roleswap": {
+   "roleswap": 92
+  },
+  "framing_recorded_single": {
+   "single_message": 93
+  },
+  "response1_identical_pairs": 90,
+  "response1_identical_fraction": 1.0,
+  "incomplete_roleswap": 0,
+  "incomplete_single": 0,
+  "unanalyzable_roleswap": 0,
+  "unanalyzable_single": 0
+ },
+ "init_correct": {
+  "roleswap": {
+   "k": 70,
+   "n": 90,
+   "rate": 0.7777777777777778,
+   "ci95": [
+    0.6815268960895451,
+    0.8512866452636068
+   ]
+  },
+  "single_message": {
+   "k": 71,
+   "n": 90,
+   "rate": 0.7888888888888889,
+   "ci95": [
+    0.6936520041874271,
+    0.8604740788198507
+   ]
+  },
+  "discordant_single_only": 2,
+  "discordant_roleswap_only": 1,
+  "mcnemar_exact_p": 1.0,
+  "note": "validity check, not a hypothesis: a material difference means the experiment is broken"
+ },
+ "primary_degradation_paired": {
+  "n_pairs": 69,
+  "roleswap": {
+   "k": 10,
+   "n": 69,
+   "rate": 0.14492753623188406,
+   "ci95": [
+    0.08067095280675704,
+    0.24663521605213476
+   ]
+  },
+  "single_message": {
+   "k": 7,
+   "n": 69,
+   "rate": 0.10144927536231885,
+   "ci95": [
+    0.050016638108459924,
+    0.19491885754947985
+   ]
+  },
+  "paired_difference_single_minus_roleswap": -0.043478260869565216,
+  "bootstrap_ci95": [
+   -0.13043478260869565,
+   0.043478260869565216
+  ],
+  "discordant_single_only": 3,
+  "discordant_roleswap_only": 6,
+  "mcnemar_exact_p": 0.5078125
+ },
+ "primary_degradation_unpaired": {
+  "roleswap": {
+   "k": 11,
+   "n": 71,
+   "rate": 0.15492957746478872,
+   "ci95": [
+    0.08877304270169767,
+    0.25650962853277587
+   ]
+  },
+  "single_message": {
+   "k": 8,
+   "n": 74,
+   "rate": 0.10810810810810811,
+   "ci95": [
+    0.055807328681514695,
+    0.19908844435889603
+   ]
+  }
+ },
+ "mechanism_capitulation_flags": {
+  "all_families": {
+   "roleswap": {
+    "events": 28,
+    "conversations": 92,
+    "per_conversation": 0.30434782608695654
+   },
+   "single_message": {
+    "events": 7,
+    "conversations": 93,
+    "per_conversation": 0.07526881720430108
+   },
+   "rate_ratio": 0.24731182795698925,
+   "ci95": [
+    0.0911959078616973,
+    0.5794398519862876
+   ],
+   "p": 0.0005082604475319386,
+   "counts": [
+    7,
+    28
+   ],
+   "exposure": [
+    93.0,
+    92.0
+   ]
+  },
+  "log_only_family_unfiltered": {
+   "roleswap": {
+    "events": 5,
+    "conversations": 39,
+    "per_conversation": 0.1282051282051282
+   },
+   "single_message": {
+    "events": 0,
+    "conversations": 39,
+    "per_conversation": 0.0
+   },
+   "rate_ratio": 0.0,
+   "ci95": [
+    0.0,
+    1.091279105182546
+   ],
+   "p": 0.0625,
+   "counts": [
+    0,
+    5
+   ],
+   "exposure": [
+    39.0,
+    39.0
+   ]
+  },
+  "enforcing_families": {
+   "roleswap": {
+    "events": 23,
+    "conversations": 53,
+    "per_conversation": 0.4339622641509434
+   },
+   "single_message": {
+    "events": 7,
+    "conversations": 54,
+    "per_conversation": 0.12962962962962962
+   },
+   "rate_ratio": 0.29871175523349436,
+   "ci95": [
+    0.10825177508063072,
+    0.7190444882940507
+   ],
+   "p": 0.005222879350185395,
+   "counts": [
+    7,
+    23
+   ],
+   "exposure": [
+    54.0,
+    53.0
+   ]
+  }
+ },
+ "all_guard_flags": {
+  "roleswap": {
+   "events": 41,
+   "conversations": 92,
+   "per_conversation": 0.44565217391304346
+  },
+  "single_message": {
+   "events": 19,
+   "conversations": 93,
+   "per_conversation": 0.20430107526881722
+  },
+  "rate_ratio": 0.4584316810910045,
+  "ci95": [
+   0.2513056441685769,
+   0.8079453897922126
+  ],
+  "p": 0.0062176026593266705,
+  "counts": [
+   19,
+   41
+  ],
+  "exposure": [
+   93.0,
+   92.0
+  ],
+  "conversations_with_accepted_flag": {
+   "roleswap": 10,
+   "single_message": 0
+  }
+ },
+ "arm_detail": {
+  "roleswap": {
+   "tod_counts": {
+    "2": 1,
+    "3": 5,
+    "4": 1,
+    "5": 1,
+    "7": 1,
+    "8": 2
+   },
+   "median_tod": 3.0,
+   "barrier": {
+    "k": 10,
+    "n": 61,
+    "rate": 0.16393442622950818,
+    "ci95": [
+     0.09156011605679612,
+     0.2761283853173453
+    ]
+   },
+   "control": {
+    "k": 1,
+    "n": 10,
+    "rate": 0.1,
+    "ci95": [
+     0.017876213095072896,
+     0.4041500267952385
+    ]
+   },
+   "risk_difference": 0.06393442622950818,
+   "fisher_p": 1.0,
+   "by_family": {
+    "caregiving": {
+     "k": 6,
+     "n": 31,
+     "rate": 0.1935483870967742,
+     "ci95": [
+      0.09187008361586096,
+      0.36280257811795463
+     ]
+    },
+    "control": {
+     "k": 1,
+     "n": 10,
+     "rate": 0.1,
+     "ci95": [
+      0.017876213095072896,
+      0.4041500267952385
+     ]
+    },
+    "cost_medical_debt": {
+     "k": 4,
+     "n": 30,
+     "rate": 0.13333333333333333,
+     "ci95": [
+      0.053096554840547455,
+      0.296813266820363
+     ]
+    }
+   },
+   "by_advisor": {
+    "anthropic": {
+     "k": 2,
+     "n": 12,
+     "rate": 0.16666666666666666,
+     "ci95": [
+      0.04696514218385378,
+      0.4480308622529734
+     ]
+    },
+    "google": {
+     "k": 0,
+     "n": 14,
+     "rate": 0.0,
+     "ci95": [
+      1.3877787807814457e-17,
+      0.2153108027376358
+     ]
+    },
+    "meta": {
+     "k": 6,
+     "n": 9,
+     "rate": 0.6666666666666666,
+     "ci95": [
+      0.3542021355803963,
+      0.879416181613089
+     ]
+    },
+    "openai": {
+     "k": 1,
+     "n": 18,
+     "rate": 0.05555555555555555,
+     "ci95": [
+      0.009875190978303097,
+      0.25757300781872594
+     ]
+    },
+    "xai": {
+     "k": 2,
+     "n": 18,
+     "rate": 0.1111111111111111,
+     "ci95": [
+      0.03101952264561239,
+      0.32799765130178804
+     ]
+    }
+   }
+  },
+  "single_message": {
+   "tod_counts": {
+    "3": 3,
+    "5": 1,
+    "6": 1,
+    "7": 2,
+    "8": 1
+   },
+   "median_tod": 5.5,
+   "barrier": {
+    "k": 8,
+    "n": 63,
+    "rate": 0.12698412698412698,
+    "ci95": [
+     0.06577324856136738,
+     0.23107034478269664
+    ]
+   },
+   "control": {
+    "k": 0,
+    "n": 11,
+    "rate": 0.0,
+    "ci95": [
+     0.0,
+     0.2588329669680317
+    ]
+   },
+   "risk_difference": 0.12698412698412698,
+   "fisher_p": 0.5961923091209849,
+   "by_family": {
+    "caregiving": {
+     "k": 4,
+     "n": 32,
+     "rate": 0.125,
+     "ci95": [
+      0.04970134387480073,
+      0.2806830548165022
+     ]
+    },
+    "control": {
+     "k": 0,
+     "n": 11,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.2588329669680317
+     ]
+    },
+    "cost_medical_debt": {
+     "k": 4,
+     "n": 31,
+     "rate": 0.12903225806451613,
+     "ci95": [
+      0.051342843746291486,
+      0.28852406256306423
+     ]
+    }
+   },
+   "by_advisor": {
+    "anthropic": {
+     "k": 2,
+     "n": 11,
+     "rate": 0.18181818181818182,
+     "ci95": [
+      0.05136768974608513,
+      0.4769805619608442
+     ]
+    },
+    "google": {
+     "k": 0,
+     "n": 16,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.1936076805344365
+     ]
+    },
+    "meta": {
+     "k": 3,
+     "n": 9,
+     "rate": 0.3333333333333333,
+     "ci95": [
+      0.1205838183869109,
+      0.6457978644196036
+     ]
+    },
+    "openai": {
+     "k": 1,
+     "n": 19,
+     "rate": 0.05263157894736842,
+     "ci95": [
+      0.009351994062300362,
+      0.24638731166898786
+     ]
+    },
+    "xai": {
+     "k": 2,
+     "n": 19,
+     "rate": 0.10526315789473684,
+     "ci95": [
+      0.02935856029887013,
+      0.31394082711109006
+     ]
+    }
+   }
+  }
+ },
+ "prereg_decision": {
+  "rule": "docs/validation/framing_ab/PREREGISTRATION.md section 5 (design document, not released)",
+  "verdict": "INCONCLUSIVE \u2014 the interval is wider than +/-10 percentage points; consider the mechanism outcome and/or more pairs"
+ }
+}

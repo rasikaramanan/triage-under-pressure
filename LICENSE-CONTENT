@@ -1,0 +1,37 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+==========================================================
+
+Scope: this license covers the WRITTEN CONTENT of this repository authored by the
+TUP project — the prompts (prompts/), the adapted vignettes and their provenance
+dossiers (vignettes/), the configuration files and their comments (config/), the
+documentation (PROJECT_SPEC.md, REPRODUCE.md, README files, NOTICE.md, CITATION.cff,
+references.bib), the released dataset and derived outputs (results/), and the write-up
+(site/). The code is licensed separately under MIT — see LICENSE.
+
+Third-party material: the vignettes are ADAPTED from external clinician-vetted
+published sources. The adaptations are TUP-authored; the underlying source
+vignettes, gold-standard dispositions, and quoted guideline excerpts remain the
+property of their publishers and are cited, not relicensed. Full attribution,
+including what is redistributed versus only cited, is in NOTICE.md. Nothing in
+this file grants rights over that third-party material.
+
+You are free to:
+
+  Share — copy and redistribute the material in any medium or format
+  Adapt — remix, transform, and build upon the material for any purpose,
+          even commercially.
+
+Under the following terms:
+
+  Attribution — You must give appropriate credit (attribute to "Rasika Ramanan,
+  Triage Under Pressure (TUP)"), provide a link to the license, and indicate if
+  changes were made. You may do so in any reasonable manner, but not in any way
+  that suggests the licensor endorses you or your use.
+
+  No additional restrictions — You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the license permits.
+
+This is a human-readable summary of (and not a substitute for) the license.
+The complete legal text is at:
+
+    https://creativecommons.org/licenses/by/4.0/legalcode

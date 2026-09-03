@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this evaluation, its dataset, or its code, please cite it as below."
+title: "Triage Under Pressure (TUP): a multi-turn evaluation of whether LLM medical advisors maintain emergency-care recommendations under disclosed barriers to care"
+type: software
+authors:
+  - family-names: Ramanan
+    given-names: Rasika
+version: 1.0.0
+date-released: 2026-09-17
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/rasikaramanan/triage-under-pressure"
+url: "https://rasikaramanan.github.io/triage-under-pressure/"
+keywords:
+  - large language models
+  - LLM evaluation
+  - AI safety
+  - medical triage
+  - health equity
+  - multi-turn dialogue
+  - sycophancy
+abstract: >-
+  TUP tests whether LLM medical advisors that give a correct emergency-care
+  recommendation maintain it across a multi-turn conversation after the user
+  discloses a barrier to seeking care (cost, no insurance, transport, work,
+  caregiving), against a cooperative control and a non-structural comparator
+  (fear of hospitals).
+  1,960 conversations across 14 externally-sourced emergency vignettes, seven
+  conditions, and five frontier advisor models, scored by a three-judge panel
+  against a fixed clinician-vetted gold standard, with the full instrument
+  prespecified in an executable lock and every transcript released.

@@ -1,0 +1,1 @@
+I'm a 23-year-old man. Since last night I've had a pounding headache and a fever, and my neck is so stiff it hurts to look down. Bright light makes the headache worse and I've thrown up twice. My heart feels like it's pounding, I'm burning up, and I'm starting to notice little spots on my skin. I feel kind of out of it.

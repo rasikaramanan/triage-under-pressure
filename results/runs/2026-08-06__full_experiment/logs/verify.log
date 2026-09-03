@@ -1,0 +1,110 @@
+store: results/runs/2026-08-06__full_experiment
+instrument: results/runs/2026-08-06__full_experiment/instrument (grid inputs and provenance checks read the SNAPSHOT)
+  [PASS] instrument snapshot matches its own manifest  -- 0: []
+grid inputs: 14 vignettes x 7 conditions x 5 advisors
+replicates: main R=3, context R=1 (read from the run)
+
+==============================================================================
+MAIN ARM (no role prompt, R=3)  (records.jsonl)
+==============================================================================
+  [PASS] every line parses as JSON  -- 0 unparseable
+  [PASS] record count == full grid  -- 1470 vs 1470
+  [PASS] no duplicate conversation_ids  -- 0 dupes: []
+  [PASS] every grid cell present  -- 0 missing: []
+  [PASS] no off-grid records  -- 0 extra: []
+  [PASS] every recorded failure was backfilled  -- 0 still absent: []
+  [PASS] every record status == 'judged'  -- {'judged': 1470}
+  [PASS] every record carries a judge panel  -- 0: []
+  [PASS] every panel has 3 seats  -- {3: 1470}
+  [PASS] leave-one-provider-out holds  -- 0: []
+  [PASS] aggregation is median-of-3 or the sanctioned median-of-2 fallback  -- {'median3_Tplus1': 1465, 'median2_Tplus1_fallback': 5}
+  [PASS] every panel seat is judged or unparseable  -- {'judged': 4405, 'unparseable': 5}
+  [PASS] every aggregate rests on >= 2 judged seats  -- 0: []
+  [PASS] judge prompt version == 9 everywhere (the snapshot lock's judge_prompt_version)  -- {9: 1470}
+  [PASS] init_correct/ToD coherent  -- 0: []
+  [PASS] patient_framing == single_message  -- {'single_message': 1470}
+  [PASS] context_arm == none  -- {'none': 1470}
+  [PASS] max_turns == 8  -- {8: 1470}
+  [PASS] no incomplete conversations  -- {True: 1470}
+  [PASS] response-1 sampling == independent  -- {'independent': 1470}
+  [PASS] 8 advisor turns in every conversation  -- {8: 1470}
+  [PASS] no empty turns  -- 0: []
+  [PASS] every transcript opens with the runner-authored patient turn  -- 0: []
+  [PASS] patient model == meta-llama/llama-3.3-70b-instruct  -- ['meta-llama/llama-3.3-70b-instruct']
+  [PASS] advisor slugs match config  -- {'openai': 'openai/gpt-5.6-terra', 'anthropic': 'anthropic/claude-sonnet-5', 'meta': 'meta-llama/llama-4-maverick', 'google': 'google/gemini-3.6-flash', 'xai': 'x-ai/grok-4.3'}
+  [PASS] 7 conditions  -- ['caregiving', 'control', 'cost_medical_debt', 'hospital_fear', 'no_insurance', 'transport_ambulance_cost', 'work']
+  [PASS] 14 vignettes
+  [PASS] 5 advisors
+  [PASS] patient prompt hash is constant within each vignette x family cell
+  [PASS] families sha256 matches the instrument snapshot  -- recorded=['4eaf313a9d62'] snapshot=4eaf313a9d62
+  [PASS] all 98 rendered patient prompts reproduce from the snapshot  -- 0 mismatched: []
+  [PASS] judge template sha256 matches the snapshot rubric  -- recorded=['28a570721ed0'] snapshot=28a570721ed0
+  [PASS] 98 distinct patient prompts (14 vignettes x 7 conditions)  -- 98
+  [PASS] patient prompt version == 12  -- [12]
+  [PASS] families version == 16  -- [16]
+  [PASS] guard version stamped 1.5.0 (or unstamped on every record)  -- ['1.5.0']
+  [PASS] manifest carries a stack_lock record
+  [PASS] stack_lock has zero mismatches
+  [PASS] lock was not overridden
+  [PASS] manifest design records single_message framing  -- {'context_arm': 'none', 'response1_sampling': 'independent', 'patient_framing': 'single_message', 'concurrency': 4}
+
+==============================================================================
+CONTEXT ARM (barrier-as-context, R=1)  (records.jsonl)
+==============================================================================
+  [PASS] every line parses as JSON  -- 0 unparseable
+  [PASS] record count == full grid  -- 490 vs 490
+  [PASS] no duplicate conversation_ids  -- 0 dupes: []
+  [PASS] every grid cell present  -- 0 missing: []
+  [PASS] no off-grid records  -- 0 extra: []
+  [PASS] every recorded failure was backfilled  -- 0 still absent: []
+  [PASS] every record status == 'judged'  -- {'judged': 490}
+  [PASS] every record carries a judge panel  -- 0: []
+  [PASS] every panel has 3 seats  -- {3: 490}
+  [PASS] leave-one-provider-out holds  -- 0: []
+  [PASS] aggregation is median-of-3 or the sanctioned median-of-2 fallback  -- {'median3_Tplus1': 489, 'median2_Tplus1_fallback': 1}
+  [PASS] every panel seat is judged or unparseable  -- {'judged': 1469, 'unparseable': 1}
+  [PASS] every aggregate rests on >= 2 judged seats  -- 0: []
+  [PASS] judge prompt version == 9 everywhere (the snapshot lock's judge_prompt_version)  -- {9: 490}
+  [PASS] init_correct/ToD coherent  -- 0: []
+  [PASS] patient_framing == single_message  -- {'single_message': 490}
+  [PASS] context_arm == barrier  -- {'barrier': 490}
+  [PASS] max_turns == 8  -- {8: 490}
+  [PASS] no incomplete conversations  -- {True: 490}
+  [PASS] response-1 sampling == independent  -- {'independent': 490}
+  [PASS] 8 advisor turns in every conversation  -- {8: 490}
+  [PASS] no empty turns  -- 0: []
+  [PASS] every transcript opens with the runner-authored patient turn  -- 0: []
+  [PASS] patient model == meta-llama/llama-3.3-70b-instruct  -- ['meta-llama/llama-3.3-70b-instruct']
+  [PASS] advisor slugs match config  -- {'meta': 'meta-llama/llama-4-maverick', 'openai': 'openai/gpt-5.6-terra', 'anthropic': 'anthropic/claude-sonnet-5', 'google': 'google/gemini-3.6-flash', 'xai': 'x-ai/grok-4.3'}
+  [PASS] 7 conditions  -- ['caregiving', 'control', 'cost_medical_debt', 'hospital_fear', 'no_insurance', 'transport_ambulance_cost', 'work']
+  [PASS] 14 vignettes
+  [PASS] 5 advisors
+  [PASS] patient prompt hash is constant within each vignette x family cell
+  [PASS] families sha256 matches the instrument snapshot  -- recorded=['4eaf313a9d62'] snapshot=4eaf313a9d62
+  [PASS] all 98 rendered patient prompts reproduce from the snapshot  -- 0 mismatched: []
+  [PASS] judge template sha256 matches the snapshot rubric  -- recorded=['28a570721ed0'] snapshot=28a570721ed0
+  [PASS] advisor context profiles reproduce from the snapshot  -- 0 mismatched: []
+  [PASS] 98 distinct patient prompts (14 vignettes x 7 conditions)  -- 98
+  [PASS] patient prompt version == 12  -- [12]
+  [PASS] families version == 16  -- [16]
+  [PASS] guard version stamped 1.5.0 (or unstamped on every record)  -- ['1.5.0']
+  [PASS] manifest carries a stack_lock record
+  [PASS] stack_lock has zero mismatches
+  [PASS] lock was not overridden
+  [PASS] manifest design records single_message framing  -- {'context_arm': 'barrier', 'response1_sampling': 'independent', 'patient_framing': 'single_message', 'concurrency': 4}
+
+==============================================================================
+CROSS-ARM
+==============================================================================
+  [PASS] 1,960 conversations total (derived from the grid)  -- 1470 + 490
+  [PASS] context arm has replicates 0..0  -- [0]
+  [PASS] main arm has replicates 0..2  -- [0, 1, 2]
+  [PASS] every context-arm record carries an advisor context block  -- {True}
+  [PASS] no main-arm record carries an advisor context block  -- {False}
+
+==============================================================================
+  note: working tree has diverged from this run's instrument in: config/models.yaml, prompts/advisor/context_profiles.yaml, prompts/advisor/system.md, prompts/patient/families.yaml, prompts/patient/system.md, vignettes/provenance/001_asthma.md, vignettes/provenance/002_dka.md, vignettes/provenance/003_stroke.md, vignettes/provenance/004_anaphylaxis.md, vignettes/provenance/005_meningitis.md, vignettes/provenance/006_aortic_dissection.md, vignettes/provenance/007_liver_failure.md, vignettes/provenance/008_blue_tinged_dyspnea.md, vignettes/provenance/009_cold_mottled_leg.md, vignettes/provenance/010_transient_vision_loss.md, vignettes/provenance/011_glaucoma.md, vignettes/provenance/012_ectopic.md, vignettes/provenance/013_atypical_mi.md, vignettes/provenance/014_no_fetal_movements.md -- informational; the snapshot is the authority
+  note: MAIN ARM (no role prompt, R=3): 5 conversation(s) aggregated on 2 seats (one seat unparseable after its retry) -- sanctioned fallback
+  note: CONTEXT ARM (barrier-as-context, R=1): 1 conversation(s) aggregated on 2 seats (one seat unparseable after its retry) -- sanctioned fallback
+
+ALL CHECKS PASSED -- the run is complete and internally consistent.
