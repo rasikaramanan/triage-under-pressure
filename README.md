@@ -12,19 +12,7 @@ By **Rasika Ramanan**
 
 ## Principal findings
 
-Models from five frontier labs were each given 14 first-person emergency scenarios —
-externally-sourced, clinician-vetted vignettes whose disposition is *seek emergency care now* —
-and mostly got the first answer right (84.2% correct initial recommendations across 1,470
-conversations). The simulated patient then pushed back over up to eight turns with a
-structural barrier: no insurance, can't afford the ambulance, can't leave a dependent, can't
-miss work, medical debt. Among conversations that started correct, advisors **walked back
-their own emergency recommendation in 19.2% (170/886) of structural-barrier conversations,
-against 2.2% (4/179) in the cooperative control** — odds ratio 10.4, Fisher p < 10⁻⁹; the
-primary mixed model puts the barrier odds ratio at 22.9 [7.5, 69.4]. **The effect is a
-*pushback* effect, not a *barrier* effect:** a seventh condition with identical sustained
-resistance but a non-material obstacle (fear of hospitals) degraded at least as much (23.1%;
-the structural-vs-fear difference is not significant). What breaks the recommendation is a
-patient who keeps pushing with a stated reason, whatever the reason is.
+Models from five frontier labs were each given 14 first-person emergency scenarios: externally sourced, clinician-vetted vignettes whose directive is *seek emergency care now*. They mostly got the first answer right, with 84.2% correct initial recommendations across 1,470 conversations. The simulated patient then pushed back across an eight-turn conversation with a structural barrier to seeking care: no insurance, an unaffordable ambulance, a dependent who cannot be left, work that cannot be missed, or medical debt. Among conversations whose first recommendation was correct, LLM advisors **walked back their own emergency recommendation in 19.2% (170/886) of structural-barrier conversations vs 2.2% (4/179) in the cooperative control** (Fisher p < 10⁻⁹). **The effect is a *pushback* effect, not a *barrier* effect**: under a seventh condition with identical sustained resistance but a non-material obstacle, fear of hospitals, advisors walked back their recommendation at least as often, at 23.1%. The structural-vs-fear difference is not statistically significant (p = 0.25). These results indicate that what breaks the recommendation is a patient who keeps pushing with a stated reason, whatever the reason is. In a companion arm of 490 conversations, the advisor knew the obstacle from the start as standing context, while the patient pushed back exactly as before. Advisors that already knew the obstacle walked back their recommendation less often: 14.4% (49/340) vs 19.8% (210/1059) across the six obstacles pooled (p = 0.025).
 
 Full analysis, figures, and limitations: **[the write-up →](https://rasikaramanan.github.io/triage-under-pressure/)**
 
@@ -82,20 +70,6 @@ spend and re-derived from the persisted records afterward, with the exact prompt
 vignette bytes snapshotted into the run's own
 [`instrument/`](results/runs/2026-08-06__full_experiment/instrument/) directory.
 
-## Reproducing
-
-Setup: a **fresh virtual environment** (Python ≥ 3.11), then `pip install -r requirements.txt`
-— or `requirements.lock` for the exact environment of record. Four tiers in increasing cost,
-with a $0 end-to-end check at the free-to-paid boundary; tolerances, costs, and caveats are in
-[`REPRODUCE.md`](REPRODUCE.md):
-
-| tier | what | command | expected |
-|---|---|---|---|
-| 0 | verify the released dataset (offline) | `python scripts/verify_run.py 2026-08-06__full_experiment` | 87 checks against the run's own instrument snapshot, ending `ALL CHECKS PASSED` |
-| 1 | recompute every published experiment statistic (offline; the human-audit agreement figures come from `scripts/analysis/human_audit_agreement.py`) | `python scripts/analysis/analyze_experiment.py 2026-08-06__full_experiment` | `git diff` empty under `requirements.lock`; floating-point tail noise only under newer libraries |
-| $0 check | run the real launcher end to end against a mock SDK (offline, no key) | `python scripts/run_experiment.py --run-name demo --dry-run --max-spend 1 --max-turns 8 --vignettes 001 --families control,cost_medical_debt --advisors anthropic --replicates-main 1 --arms main` | a complete miniature run under `results/dry_runs/`; proves every moving part works before a key or budget is involved |
-| 2 | re-judge the stored transcripts (~$50 main arm, API key) | `python scripts/rejudge.py 2026-08-06__full_experiment --arm main --all` | per-conversation agreement with the released panel, not byte identity |
-| 3 | re-run the experiment live (~$150+, API key) | `python scripts/run_experiment.py --run-name my_replication --max-spend 200 --max-turns 8` | the *finding*, not the exact numbers — live models drift |
 
 ## Repository map
 
@@ -105,11 +79,48 @@ with a $0 end-to-end check at the free-to-paid boundary; tolerances, costs, and 
 | [`scripts/`](scripts/) | entry points: launch, re-judge, verify, analyze |
 | [`config/`](config/) | the executable prespecification: locked instrument terms, model registry, the full 1,960-row roster |
 | [`prompts/`](prompts/) | the three agents' operative prompts — patient, advisor (none in the main arm, by design; a standing obstacle profile in the context arm), judge rubric |
-| [`vignettes/`](vignettes/) | the 14 adapted emergency scenarios + per-vignette provenance dossiers |
+| [`vignettes/`](vignettes/) | the 14 adapted emergency vignettes + per-vignette provenance dossiers. Note that the repo uses the term "vignette" where the write-up uses "case". |
 | [`results/`](results/) | the complete run of record (raw transcripts, judgments, sidecars) + the two pre-launch methods studies + derived statistics and the human-audit agreement artifacts |
 | [`site/`](site/) | the self-contained write-up page served by GitHub Pages |
 | [`PROJECT_SPEC.md`](PROJECT_SPEC.md) | the design specification: research question, agents, conditions, metrics, locked instrument, threats to validity |
 | [`REPRODUCE.md`](REPRODUCE.md) | the reproduction guide: setup, tiers, tolerances, costs |
+
+
+## Reproducing
+
+Setup: a **fresh virtual environment** (Python ≥ 3.11), then `pip install -r requirements.txt`
+— or `requirements.lock` for the exact environment of record. Full instructions are in
+[`REPRODUCE.md`](REPRODUCE.md):
+
+**Tier 0 — verify the released dataset (offline).**
+
+    python scripts/verify_run.py 2026-08-06__full_experiment
+
+Runs 87 checks against the run's own instrument snapshot and ends with `ALL CHECKS PASSED`.
+
+**Tier 1 — recompute every published experiment statistic (offline).**
+
+    python scripts/analysis/analyze_experiment.py 2026-08-06__full_experiment
+
+Under `requirements.lock`, `git diff` comes back empty. Under newer libraries, expect floating-point tail noise only. The human-audit agreement figures come from `scripts/analysis/human_audit_agreement.py`.
+
+**$0 check — run the real launcher end to end against a mock SDK (offline, no key).**
+
+    python scripts/run_experiment.py --run-name demo --dry-run --max-spend 1 --max-turns 8 --vignettes 001 --families control,cost_medical_debt --advisors anthropic --replicates-main 1 --arms main
+
+Produces a complete miniature run under `results/dry_runs/`. This proves every moving part works before a key or a budget is involved.
+
+**Tier 2 — re-judge the stored transcripts (API key; about $50 for the main arm).**
+
+    python scripts/rejudge.py 2026-08-06__full_experiment --arm main --all
+
+Expect per-conversation agreement with the released panel, not byte identity.
+
+**Tier 3 — re-run the experiment live (API key; about $150 or more).**
+
+    python scripts/run_experiment.py --run-name my_replication --max-spend 200 --max-turns 8
+
+Expect the *finding* to reproduce, not the exact numbers. Live models drift.
 
 
 ## License & citation
