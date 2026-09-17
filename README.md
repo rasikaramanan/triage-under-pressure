@@ -28,12 +28,7 @@ Full analysis, figures, and limitations: **[the write-up →](https://rasikarama
 210 of them are in the five structural-barrier conditions (the cooperative control and the
 hospital-fear comparator are excluded here by design). The walk-back rate is computed over
 those 210 restricted to the ones whose initial recommendation was correct — hence the
-per-advisor denominators. Every number in this table regenerates from the released records with
-
-```bash
-python scripts/analysis/analyze_experiment.py 2026-08-06__full_experiment
-```
-
+per-advisor denominators. 
 
 ## Experimental design
 
@@ -60,16 +55,6 @@ A smaller **context arm** also discloses the obstacle to the advisor up front, i
 message, before the patient raises it mid-conversation as usual — a different question, reported
 separately.
 
-Scale: **1,960 conversations** (1,470 main + 490 context) · 14 vignettes × 7 conditions ×
-5 advisors · 8 advisor turns each · all-in API cost **$172.56** ($154.12 on conversations and
-judging; the rest on the patient-fidelity guard).
-
-Every conversation was produced under a **fail-closed instrument lock**
-([`config/locked_stack.yaml`](config/locked_stack.yaml)): nine design terms asserted before any
-spend and re-derived from the persisted records afterward, with the exact prompt, config, and
-vignette bytes snapshotted into the run's own
-[`instrument/`](results/runs/2026-08-06__full_experiment/instrument/) directory.
-
 
 ## Repository map
 
@@ -86,46 +71,27 @@ vignette bytes snapshotted into the run's own
 | [`REPRODUCE.md`](REPRODUCE.md) | the reproduction guide: setup, tiers, tolerances, costs |
 
 
-## Reproducing
+## Quickstart
 
-Setup: a **fresh virtual environment** (Python ≥ 3.11), then `pip install -r requirements.txt`
-— or `requirements.lock` for the exact environment of record. Full instructions are in
-[`REPRODUCE.md`](REPRODUCE.md):
+Setup: a **fresh virtual environment** (Python ≥ 3.11), then `pip install -r requirements.txt`  or `pip install -r requirements.lock` for the exact environment of record. Full instructions are in
+[`REPRODUCE.md`](REPRODUCE.md).
 
-**Tier 0 — verify the released dataset (offline).**
+**Tier 0 — verify the released dataset (offline).** Runs 87 checks against the run's own instrument snapshot and ends with `ALL CHECKS PASSED`.
 
     python scripts/verify_run.py 2026-08-06__full_experiment
-
-Runs 87 checks against the run's own instrument snapshot and ends with `ALL CHECKS PASSED`.
 
 **Tier 1 — recompute every published experiment statistic (offline).**
 
     python scripts/analysis/analyze_experiment.py 2026-08-06__full_experiment
 
-Under `requirements.lock`, `git diff` comes back empty. Under newer libraries, expect floating-point tail noise only. The human-audit agreement figures come from `scripts/analysis/human_audit_agreement.py`.
-
-**$0 check — run the real launcher end to end against a mock SDK (offline, no key).**
-
-    python scripts/run_experiment.py --run-name demo --dry-run --max-spend 1 --max-turns 8 --vignettes 001 --families control,cost_medical_debt --advisors anthropic --replicates-main 1 --arms main
-
-Produces a complete miniature run under `results/dry_runs/`. This proves every moving part works before a key or a budget is involved.
-
-**Tier 2 — re-judge the stored transcripts (API key; about $50 for the main arm).**
+**Tier 2 — re-judge the stored transcripts (OpenRouter API key required; about $50 for the main arm).** Expect per-conversation agreement with the released panel, not byte identity.
 
     python scripts/rejudge.py 2026-08-06__full_experiment --arm main --all
 
-Expect per-conversation agreement with the released panel, not byte identity.
-
-**Tier 3 — re-run the experiment live (API key; about $150 or more).**
+**Tier 3 — re-run the experiment live (OpenRouter API key required; about $150 or more).** Expect the _finding_ to reproduce, not the exact numbers.
 
     python scripts/run_experiment.py --run-name my_replication --max-spend 200 --max-turns 8
 
-Expect the *finding* to reproduce, not the exact numbers. Live models drift.
-
-
 ## License & citation
 
-Code is MIT ([`LICENSE`](LICENSE)); prompts, vignettes, documentation, and data are
-CC BY 4.0 ([`LICENSE-CONTENT`](LICENSE-CONTENT)); third-party vignette sources are attributed
-in [`NOTICE.md`](NOTICE.md). To cite, use [`CITATION.cff`](CITATION.cff) or GitHub's
-"Cite this repository" button.
+Code is MIT ([`LICENSE`](LICENSE)); prompts, vignettes, configuration, documentation, the released data, and the write-up page are CC BY 4.0 ([`LICENSE-CONTENT`](LICENSE-CONTENT)); third-party vignette sources are attributed in [`NOTICE.md`](NOTICE.md). To cite, use [`CITATION.cff`](CITATION.cff) or GitHub's "Cite this repository" button.
